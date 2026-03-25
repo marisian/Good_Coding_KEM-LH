@@ -7,7 +7,7 @@ author: Maria Sirvent
 ---
 
 # 🍝
-# From Spaghetti Code to Robust Repositories
+# From Spaghetti Code to Robust Repos
 ## Key Practices for Better Coding in Research Projects
 #### KEM Learning Hour 
 April 28, 2026
