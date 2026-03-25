@@ -1,0 +1,13 @@
+{
+  "paths": {
+    "raw_data": "data/raw/survey_2026.csv",
+    "processed_data": "data/processed/clean_survey.csv",
+    "results_table": "outputs/tables/summary_stats.csv"
+  },
+  "analysis_params": {
+    "min_age_threshold": 18,
+    "tax_rate": 0.82,
+    "scaling_factor": 1.5,
+    "missing_value_code": " "
+  }
+}
