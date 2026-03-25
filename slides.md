@@ -6,7 +6,9 @@ footer: 'KEM Learning Hour | 28.04.2026'
 author: Maria Sirvent
 ---
 
-# Good Coding in Social Science
+# 🍝
+# From Spaghetti Code to Robust Repositories
+## Key Practices for Better Coding in Research Projects
 #### KEM Learning Hour 
 April 28, 2026
 Maria Sirvent 
@@ -17,6 +19,7 @@ Maria Sirvent
 
 ![image](files.png)
 *(The "analysis_final_v3_ms_FINAL_nowREALLY.py" trap)*
+(--> add another spaghetti code image)
 
 ---
 
