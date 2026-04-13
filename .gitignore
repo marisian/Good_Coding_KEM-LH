@@ -1,3 +1,4 @@
 *.py
 *.R
-*.csv
+*.cs
+*.DS_Store
