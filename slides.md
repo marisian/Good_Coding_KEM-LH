@@ -41,6 +41,10 @@ A selection of small habits with big impact on your projects:
 
 ---
 
+# Structure
+
+---
+
 ## Structure: Part I (A Groomed Folder Tree)
 
 Keep data separate from scripts and functions. 
@@ -123,16 +127,7 @@ result2 = d2["age"].sum()
 
 ---
 
-## The Features of Clean Code
-- **Separation of Concerns**: Keep cleaning scripts separate from analysis scripts and functions separate from data
-- **Intentional Naming**: ``monthly_income`` instead of ``var_x``.
-- **Hands-Free Pipelines**: Never manually edit a script
-- **Relative Paths**: Use ``./data/`` (adapted to your project structure) so the code runs on any computer.
-- **Narrative Comments**: Explain *why* you made a choice, not what the code does.
-
----
-
-## Example: Modular and Readable
+## Modular and Readable
 ```python
 # file: src/transformations.py
 def calculate_age(birth_year, current_year): 
@@ -144,7 +139,7 @@ def calculate_age(birth_year, current_year):
 from src.transformations import calculate_age
 import pandas as pd
 
-RAW_DATA = "./data/raw/survey_responses.csv" # or get this from config
+RAW_DATA = "./data/raw/survey_responses.csv" # or move this to config
 CURRENT_YEAR = 2026
 
 # Loading into a clearly named DataFrame
@@ -153,6 +148,18 @@ survey_data = pd.read_csv(RAW_DATA)
 # Transformation is explicit and readable
 survey_data["age"] = calculate_age(survey_data["birth_year"], CURRENT_YEAR)
 ```
+---
+
+## The Features of Clean Code
+- **Separation of Concerns**: Keep cleaning scripts separate from analysis scripts and functions separate from data
+- **Intentional Naming**: ``monthly_income`` instead of ``var_x``.
+- **Hands-Free Pipelines**: Never manually edit a script and run projects from a single entry point.
+- **Relative Paths**: Use ``./data/`` (adapted to your project structure) so the code runs on any computer.
+- **Narrative Comments**: Explain *why* you made a choice, not what the code does.
+
+---
+
+# Version Contol
 
 ---
 
@@ -172,9 +179,9 @@ project-scripts/
 ---
 
 ## Version Control: Your Time-Machine
-  <img src="git_1.png" align="middle" width="400px" alt="Git commits">
+A version control system (VCS) like Git stores "snapshots" of a project's files in a *repository*.
+<img src="git_1.png" align="middle" width="400px" alt="Git commits">
 
-- A version control system (VCS) like Git stores "snapshots" of a project's files in a *repository*. 
 - You can modify your own working copy and *commit* the changes you made to the repository when you are satisfied with the result.
 - The VCS stores the entire history of changes of those files &rarr; An endless "undo"-button
 
@@ -190,16 +197,21 @@ git init
 git add my_analysis.R
 git commit -m "Add age filter to respondents under age limit"
 ```
-- See a history of all changes made
-- Revert to any previous shapshot if things break
-- Keep a clean and tested "main" version
-- Merge changes from co-authors without "final_v3_ms"-confusion.
 
-> See KEM Learning Hour from March 2026 for more info on Git.
+---
+## Version Control: The Power of Branching
+A branch is like an independent line of development departing from your main code.
+  <img src="git_2.png" align="middle" width="300px" alt="Git branch">
+- Experiment safely with new methods without touching *Main*.
+- Work in parallel without ``final_v3_ms_review_FINAL.py``-confusion.
+- Write robust code by integrating *code reviews* into your workflow
+
+> See KEM Learning Hour from March 2026 for more information on using Git at IAB.
+---
+# Testing
 
 ---
 ## Testing
-
 | ID | birth_year | geo_id |
 | :--- | :--- | :--- |
 | 345 | 1991 | DE |
@@ -242,10 +254,10 @@ def test_calculate_age():
     # Test case 1: Standard calculation
     assert calculate_age(1990, 2026) == 36
 
-    # Test case 2: Edge case (Birth year in future)
+    # Test case 2: Edge case (birth year in future)
     assert calculate_age(2030, 2026) is None
 
-    # Test case 3: Edge case (Born this year)
+    # Test case 3: Edge case (born this year)
     assert calculate_age(2026, 2026) == 0
 
 test_calculate_age()
@@ -260,7 +272,7 @@ stopifnot(all(!is.na(df$geo_id)))
 # 2. Check for duplicate records
 stopifnot(!any(duplicated(df$ID)))
 
-# 3. Check for scientific plausibility (Catching '178')
+# 3. Check for plausibility (Catching '178')
 if (any(df$birth_year < 1900)) {
     stop("Impossible birth year detected (pre-1900).")
 }
@@ -275,13 +287,10 @@ test_calculate_age <- function() {
   stopifnot(calculate_age(1990, 2026) == 36)
   
   # Test case 2: Edge case (Birth year in future)
-  # In R, we use 'is.null()' to check for the equivalent of 'None'
   stopifnot(is.null(calculate_age(2030, 2026)))
   
   # Test case 3: Edge case (Born this year)
   stopifnot(calculate_age(2026, 2026) == 0)
-  
-  print("All tests passed!")
 }
 
 test_calculate_age()
@@ -299,6 +308,10 @@ Write tests to automatically **check whether your data inputs are plausible and 
 
 **Rule of thumb**: 
 If you find yourself manually checking a summary table to see if a value "looks plausible", write a code-based test for it instead.
+
+---
+
+# Wrap-up
 
 ---
 ## Summary: Spaghetti Code vs. Clean Repositories
