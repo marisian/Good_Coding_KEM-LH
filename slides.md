@@ -20,7 +20,7 @@ Maria Sirvent
 - **Productivity**: Spend your energy on research, not debugging
 - **Scalability:** Keep control as the project grows more complex
 - **Scientific Integrity:** Be confident that the code does exactly what you claim
-- **Future-Proofing** Collaborate with colleagues and your future self
+- **Future-Proofing:** Collaborate with colleagues and your future self
 
 ---
 
@@ -30,7 +30,7 @@ We'll focus on three key pillars of good code:
 
 - **Structure**: Set up a clean architecture 
 - **Version control**: Build a time machine for your work
-- **Testing**: Make your scripts break-proof and sanity-checked
+- **Testing**: Catch errors early and build in data sanity checks
 
 ---
 
@@ -98,6 +98,8 @@ df2["var_x"] <- df2["income"] / 12
 df2.iloc["var_x", 14] = 4500 
 
 d3 = d2[d2["age"] > 18]
+
+result2 = d2["age"].sum()
 ```
 
 ---
@@ -136,12 +138,37 @@ survey_data["age"] = calculate_age(survey_data["birth_year"], CURRENT_YEAR)
 ---
 
 ## Version Control: Your Time-Machine
-Never create multiple versions of the same file. Maintain a **single source of truth**.
+Keeping track of changes is hard - especially when collaborating with others.
 
-Use git:
+```text
+project-scripts/         
+├── clean_script_final.R
+├── clean_script_maria_v2_FINAL.R         
+├── clean_script_maria_v2_REALLY_FINAL.R 
+├── script_v1_alternative.R 
+└── script_v3.R
+```
+
+Does this look familiar?
+
+
+---
+
+## Version Control: Your Time-Machine
+- Never create multiple versions of the same file. Maintain a **single source of truth**.
+- A version control system (VCS) like Git stores "snapshots" of a project's files in a *repository*. 
+- You can modify your own working copy and *commit* the changes you made to the repository when you are satisfied with the result.
+- The VCS stores the entire history of changes of those files &rarr; An endless "undo"-Button
+
+---
+
+### Version Control: Basic Workflow
+
+Make your first commit:
 ```bash
 cd path/to/your/project
 git init
+# Create a new file my_analysis.R and add some code.
 git add my_analysis.R
 git commit -m "Add age filter to respondents under age limit"
 ```
@@ -222,6 +249,12 @@ Four simple tricks to stabilize a messy project *today*:
 ---
 
 ### Additional Resources
+- Read:
+**[Best practices for scientific computing](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745)** (Wilson et al., 2014)
 
----
+- Watch:
 
+
+- Learn by doing:
+**[The Software Carpentry / The Carpentries](https://software-carpentry.org/lessons/index.html)**
+Software and data tutorials especially for scientific coders
