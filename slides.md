@@ -62,51 +62,6 @@ project-root/
 ```
 ---
 
-## The Control Panel ``config.json``
-Keep local paths and parameter values centralized in a configuration file.
-
-**The `config.json` file:**
-```json
-{"paths": {
-    "raw_data": "data/raw/survey_2026.csv",
-    "output_dir": "results/tables/"
-  },
-  "params": {
-    "min_age": 18,
-    "income_cutoff": 5000,
-    "exclude_missing": true
-  }
-}
-```
-*Instead of JSON, you could use .csv, .txt or a native data structure (e.g., a named list)*
-
----
-
-## Why use a Config?
-- **Portability**: Your colleague can run your scripts without going through 500 lines to change a file path.
-- **Sensitivity Analysis**: When a reviewer asks "what if the age cutoff were 21 instead of 18?", you change a single number in ``config.json``and re-run.
-
----
-
-## Config Implementation
-In Python:
-```python
-import json
-with open("config.json") as f:
-  cfg = json.load(f)
-
-df_clean = df[df["age"] >= cfg["params"]["min_age"]]
-```
-In R:
-```R
-library(jsonlite)
-conf <- fromJSON("config.json")
-
-df_clean <- df[df$age >= conf$params$min_age, ]
-```
-
----
-
 ## Structure: Part II (Spotting Spaghetti)
 
 Can you spot the problems in this python script?
@@ -158,8 +113,52 @@ survey_data["age"] = calculate_age(survey_data["birth_year"], CURRENT_YEAR)
 - **Narrative Comments**: Explain *why* you made a choice, not what the code does.
 
 ---
+## The Control Panel ``config.json``
+Keep local paths and parameter values centralized in a configuration file.
 
-# Version Contol
+**The `config.json` file:**
+```json
+{"paths": {
+    "raw_data": "data/raw/survey_2026.csv",
+    "output_dir": "results/tables/"
+  },
+  "params": {
+    "min_age": 18,
+    "income_cutoff": 5000,
+    "exclude_missing": true
+  }
+}
+```
+*Instead of JSON, you could use .csv, .txt or a native data structure (e.g., a named list)*
+
+---
+
+## Why use a Config?
+- **Portability**: Your colleague can run your scripts without going through 500 lines to change a file path.
+- **Sensitivity Analysis**: When a reviewer asks "what if the age cutoff were 21 instead of 18?", you change a single number in ``config.json``and re-run.
+
+---
+
+## Config Implementation
+In Python:
+```python
+import json
+with open("config.json") as f:
+  cfg = json.load(f)
+
+df_clean = df[df["age"] >= cfg["params"]["min_age"]]
+```
+In R:
+```R
+library(jsonlite)
+conf <- fromJSON("config.json")
+
+df_clean <- df[df$age >= conf$params$min_age, ]
+```
+
+---
+
+# Version Control
 
 ---
 
@@ -236,7 +235,6 @@ assert df['geo_id'].notna().all(), \
 assert not df['ID'].duplicated().any(), \
   "Duplicate Participant IDs detected"
 
-current_year = 2026
 min_birth_year = 1900 
 invalid_years = df[df['birth_year'] < min_birth_year]
 if not invalid_years.empty:
@@ -326,32 +324,38 @@ If you find yourself manually checking a summary table to see if a value "looks 
 --- 
 
 ## Quick Hacks for Your Existing Repos
-Four simple tricks to stabilize a messy project *today*:
+Four simple ways to improve your project *today*:
 
-1. **Lock raw data away**: Create a folder named `data/raw/`. Move your original data there and never save over it again. 
-2. **Go absolute-path hunting**: Search your scripts for paths like `C:/Users/`. Replace them with relative paths (e.g., `./data/`) so the code works independent from the directory where it is stored.
-3. **Eliminate hard-coded numbers**: Find "magic numbers" (like `0.82` or `18`). Replace them with a named variable at the top of your script (e.g., `MIN_AGE = 18`).
-4. **Make your analysis reproducible with one command**: Create a single “main” script (e.g., main.py, or run.R) that executes your entire workflow from end-to-end.
+1. **Lock raw data away**: Create a folder named `data/raw/`. Move your original data there and treat it as read-only.
+2. **Refactor absolute paths**: Search your scripts for paths like `C:/Users/`. Replace them with relative paths.
+3. **Eliminate hard-coded numbers**: Find hard-coded "magic numbers". Replace them with a named variable like ``MIN_AGE=18`` at the top of your script or in a conifig file.
+4. **Creata a single entry point**: Create a single “main” script (e.g., ``main.py``) that executes your entire workflow from end-to-end.
 
 ---
 
 ## Final Takeaways
 
-- **Invest early**: 10 minutes of clean coding today saves hours of debugging pain tomorrow
-- **Version control is not optional**: Git is your safety net.
-- **Separation of concerns**: Keep your data, your settings and each of your transformation/analysis steps in their own lanes
+- **Investing early pays off**: 10 minutes of clean coding today saves future your from hours of debugging pain.
+- **Version control is not optional**: Using Git will be your safety net.
+- **Modularity reduces maintenance effort**: Separating your project into "building blocks" isolates failure, makes testing possible, and reduces cognitive load.
 
 ---
 
 ## Additional Resources
-- Read:
-**[Best practices for scientific computing](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745)** (Wilson et al., 2014)
+- Read: **[Best practices for scientific computing](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745)** (Wilson et al., 2014)
 
-- Watch:
-**[Science as Amateur Software Development (2023 edition)](https://www.youtube.com/watch?v=ztbYkBPDOgU)** (Richard McElreath, 2023)
+- Watch: **[Science as Amateur Software Development (2023 edition)](https://www.youtube.com/watch?v=ztbYkBPDOgU)** (Richard McElreath, 2023)
 
-- Learn by doing:
-**[The Software Carpentry / The Carpentries](https://software-carpentry.org/lessons/index.html)**
+- Learn by doing: **[The Software Carpentry / The Carpentries](https://software-carpentry.org/lessons/index.html)**
 Software and data tutorials especially for scientific coders
 
+---
+## Appendix I: The \__debug__ risk
 
+In Python, assert statements can be globally disabled. If you run Python with the -O (optimize) flag, the interpreter completely ignores all assert lines.
+
+* Asserts are for internal development checks (things that "should never happen" if the code is written correctly).
+
+* ValueErrors are for runtime data validation (things that "might happen" because the input data is messy).
+
+If this script were part of a data pipeline running in a production environment, an assert might be silenced, allowing "impossible" birth years to slide through and ruin your analysis.
