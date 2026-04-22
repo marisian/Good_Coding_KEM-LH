@@ -14,6 +14,11 @@ To use the materials in this repository, clone it to your local machine:
 https://github.com/marisian/Good_Coding_KEM-LH.git
 ```
 
+## Built with
+* python / R - Data analysis examples
+* [Marp](https://marp.app/) - Interactive slide deck from markdown
+* GitHub Pages - Hosting the slides
+
 ## License and Contact Info
 Developed by Maria Sirvent for the KEM Learning Hour.
 
