@@ -1,0 +1,6 @@
+data/
+*.csv
+*.xls
+*.xlsx
+*.dta
+*.parquet
