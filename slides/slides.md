@@ -228,7 +228,7 @@ Keeping track of changes is hard - especially when collaborating with others.
 
 ## Version Control: Your Time-Machine
 A version control system (VCS) like Git stores "snapshots" of a project's files in a *repository*.
-<img src="slides/git_1.png" align="middle" width="400px" alt="Git commits">
+<img src="/slides/git_1.png" align="middle" width="400px" alt="Git commits">
 
 - You can modify your own working copy and *commit* the changes you made to the repository when you are satisfied with the result.
 - The VCS stores the entire history of changes of those files &rarr; An endless "undo"-button
@@ -249,7 +249,7 @@ git commit -m "Add age filter to respondents under age limit"
 ---
 ## Version Control: The Power of Branching
 A branch is like an independent line of development departing from your main code.
-  <img src="slides/git_2.png" align="middle" width="300px" alt="Git branch">
+  <img src="/slides/git_2.png" align="middle" width="300px" alt="Git branch">
 - Experiment safely with new methods without touching *Main*.
 - Work in parallel without ``final_v3_ms_review_FINAL.py``-confusion.
 - Write robust code by integrating *code reviews* into your workflow
