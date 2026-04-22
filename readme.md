@@ -1,5 +1,5 @@
 # From Spaghetti Code to Robust Repositories
-### KEM Learning Hour | April 28, 2026 Materials and Resources for Modern Scientific Coding
+### KEM Learning Hour | April 28, 2026 
 
 ## Slides
 View the slides [here](https://marisian.github.io/Good_Coding_KEM-LH/).
