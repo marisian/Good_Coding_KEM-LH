@@ -17,10 +17,10 @@ Maria Sirvent
 
 ## Why Code Quality Matters
 
-- **Productivity**: Spend your energy on research, not debugging
-- **Scalability:** Keep control as the project grows more complex
-- **Scientific Integrity:** Be confident that the code does exactly what you claim
-- **Future-Proofing:** Collaborate with colleagues and "future you"
+* **Productivity**: Spend your energy on research, not debugging.
+* **Scalability:** Keep control as the project grows more complex.
+* **Scientific Integrity:** Be confident that the code does exactly what you claim.
+* **Future-Proofing:** Collaborate with colleagues and "future you".
 
 ---
 
@@ -181,9 +181,9 @@ Keep local paths and parameter values centralized in a configuration file.
 ---
 
 ## Why use a Config?
-- **Overview**: You see all your paths and parameters neatly structured in one place.
-- **Portability**: Your colleague can run your scripts without going through 500 lines to change a file path or the reference year.
-- **Sensitivity Analysis**: When you want to try out what happens if you move the age cutoff form ``18``to ``21``, you change a single number in ``config.json``and re-run.
+* **Overview**: You see all your paths and parameters neatly structured in one place.
+* **Portability**: Your colleague can run your scripts without going through 500 lines to change a file path or the reference year.
+* **Sensitivity Analysis**: When you want to try out what happens if you move the age cutoff form ``18``to ``21``, you change a single number in ``config.json``and re-run.
 
 ---
 
@@ -254,7 +254,7 @@ A branch is like an independent line of development departing from your main cod
 - Work in parallel without ``final_v3_ms_review_FINAL.py``-confusion.
 - Write robust code by integrating *code reviews* into your workflow
 
-> See KEM Learning Hour from March 2026 for more information on using Git at IAB.
+*See KEM Learning Hour from March 2026 for more information on using Git at IAB.*
 ---
 # Testing
 
@@ -349,9 +349,11 @@ test_calculate_age()
 Write tests to automatically **check whether your data inputs are plausible and your code works as expected**. 
 
 **Why it matters for you:**
-- Avoid silent errors
-- Ensure results stay consistent when code changes
-- Make your work easier to verify, understand and share
+* Avoid silent errors
+
+* Ensure results stay consistent when code changes
+
+* Make your work easier to verify, understand and share
 
 **Rule of thumb**: 
 If you find yourself manually checking a summary table to see if a value "looks plausible", write a code-based test for it instead.
@@ -377,16 +379,18 @@ Four simple ways to improve your project *today*:
 
 1. **Lock raw data away**: Create a folder named `data/raw/`. Move your original data there and treat it as read-only.
 2. **Refactor absolute paths**: Search your scripts for paths like `C:/Users/`. Replace them with relative paths.
-3. **Eliminate hard-coded numbers**: Find hard-coded "magic numbers". Replace them with a named variable like ``MIN_AGE=18`` at the top of your script or in a conifig file.
-4. **Creata a single entry point**: Create a single “main” script (e.g., ``main.py``) that executes your entire workflow from end-to-end.
+3. **Eliminate hard-coded numbers**: Find hard-coded "magic numbers". Replace them with a named variable like ``MIN_AGE=18`` at the top of your script or in a config file.
+4. **Create a single entry point**: Create a single “main” script (e.g., ``main.py``) that executes your entire workflow from end-to-end.
 
 ---
 
 ## Final Takeaways
 
-- **Investing early pays off**: 10 minutes of clean coding today saves future your from hours of debugging pain.
-- **Version control is not optional**: Using Git will be your safety net.
-- **Modularity reduces maintenance effort**: Separating your project into "building blocks" isolates failure, makes testing possible, and reduces cognitive load.
+* **Investing early pays off**: 10 minutes of clean coding today saves future your from hours of debugging pain.
+
+* **Version control is not optional**: Using Git will be your safety net.
+
+* **Modularity reduces maintenance effort**: Separating your project into "building blocks" isolates failure, makes testing possible, and reduces cognitive load.
 
 ---
 
