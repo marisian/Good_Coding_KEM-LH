@@ -11,7 +11,7 @@ View the slides [here](https://marisian.github.io/Good_Coding_KEM-LH/).
 ## Using the template
 To use the materials in this repository, clone it to your local machine:
 ```bash
-https://github.com/marisian/Good_Coding_KEM-LH.git
+git clone https://github.com/marisian/Good_Coding_KEM-LH.git
 ```
 
 ## Built with
