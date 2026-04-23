@@ -112,44 +112,6 @@ survey_data.to_csv(OUT_PATH)
 ```
 
 ---
-## R Spaghetti
-```R
-# file: Analysis_Final_REALLY_FINAL.R
-d <- read.csv("./data/raw/survey_responses.csv")
-
-# Vague naming and hardcoded logic
-d$var1 <- 2026 - d$birth_year
-
-# Overwriting the original column
-# If you run this line twice, you've divided by 144!
-d$income <- d$income / 12
-
-print(mean(d$var1, na.rm = TRUE))
-
-# Overwriting the source file
-write.csv(d, "./data/raw/survey_responses.csv", row.names = FALSE)
-```
----
-## R Cleanup
-```R
-source("./src/transformations.R")
-
-# Configuration concern
-RAW_PATH <- "./data/raw/survey_responses.csv"
-OUT_PATH <- "./data/processed/survey_responses.csv"
-REF_YEAR <- 2026
-
-# Execution concern
-survey_data <- read.csv(RAW_PATH)
-
-# Indiviudal variable transformation concerns
-survey_data$age <- calc_age(survey_data$birth_year, REF_YEAR)
-survey_data$monthly_income <- calc_monthly_income(survey_data$income)
-
-# Save to a new location to preserve the "raw" concern
-write.csv(survey_data, OUT_PATH, row.names = FALSE)
-```
----
 
 ## Features of Clean Code
 - **Separation of Concerns**: Keep cleaning scripts separate from analysis scripts and functions separate from data.
